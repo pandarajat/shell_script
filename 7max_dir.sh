@@ -15,6 +15,8 @@ FILENAME=$(ls -t1 $LOCATION | tail -n 1)
 
 echo  "$DIRCOUNT"
 done
+echo "it needs more backup"
+
 
 
    
