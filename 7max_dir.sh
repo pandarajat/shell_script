@@ -1,3 +1,4 @@
+#!/bin/bash 
 LOCATION=/tmp/dir
 FILECOUNT=$(find $LOCATION -maxdepth 1 -type f | wc -l)
 DIRCOUNT=$(find $LOCATION -maxdepth 1 -type d | wc -l)
