@@ -9,7 +9,7 @@ for ((a=$DIRCOUNT; a>=7; a--))
 do
 FILENAME=$(ls -t1 $LOCATION | tail -n 1)
  echo "$LOCATION/$FILENAME"
- rm -rf $LOCATION/$FILENAME
+sudo  rm -rf $LOCATION/$FILENAME
  echo " $FILENAME"
  echo " $FILENAME is delete"
  DIRCOUNT=$(find $LOCATION -maxdepth 1 -type d | wc -l)
