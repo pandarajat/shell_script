@@ -1,5 +1,5 @@
 #daily backup at 12 pm
-0 12 * * * bash /tmp/
+0 12 * * * bash /tmp/7max_dir.sh
 
 #weekly backup on monday
 0 12 * * 1 bash /tmp/weekly4.sh
