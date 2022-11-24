@@ -1,0 +1,6 @@
+#daily backup at 12 pm
+0 12 * * * bash /tmp/file.sh
+
+#weekly backup on monday
+0 12 * * 1 bash /tmp/filef4w.sh
+
