@@ -8,9 +8,9 @@ echo "directories are: $DIRCOUNT "
 for ((a=$DIRCOUNT; a>8; a--))
 do
 DIRNAME=$(ls -t1 $LOCATION | tail -n 1)
- echo "$LOCATION/$DIRNAME"
+ echo "Directory LOcation : $LOCATION/$DIRNAME"
  sudo rm -rf $LOCATION/$DIRNAME
- echo " $DIRNAME"
+ echo "Directory Name : $DIRNAME"
  echo " $DIRNAME is delete"
  DIRCOUNT=$(find $LOCATION -maxdepth 1 -type d | wc -l)
 
