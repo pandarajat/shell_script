@@ -1,3 +1,4 @@
+#!/bin/bash
 #post for update-schema
 API=$(curl  -X  POST  https://testing-cloud.imprintnext.io/api/v1/saas/update-schema -d '{"auth_token":"VFFxaE1qUGx2SE1oVmZ2TDk4SUh5QT09","version":"2.3","update_for":"all"}' | jq -r  '.remaining' )
 echo "$API"
