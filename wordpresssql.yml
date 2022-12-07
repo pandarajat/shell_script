@@ -1,0 +1,83 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name:  mydeployment
+ namespace: default
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+    app: mywordpress
+ template:
+  metadata:
+   name: wordpresspod
+   labels:
+    app: mywordpress
+  spec:
+    containers:
+    - name: wordpress
+      image: wordpress
+      imagePullPolicy: Always
+      resources:
+       requests:
+         memory: 256Mi
+         cpu: 200m
+       limits:
+         memory: 512Mi
+         cpu: 400m
+      ports:
+      - containerPort: 80
+      env:
+      - name:  WORDPRESS_DB_HOST
+        value: "34.93.120.36"
+      - name: WORDPRESS_DB_USER
+        value: "raja"
+      - name: WORDPRESS_DB_PASSWORD
+        value: "raja123"
+      - name: WORDPRESS_DB_NAME
+        value: "data"
+      - name: WORDPRESS_TABLE_PREFIX
+        value: "wp_"
+
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: wordpresshpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: mydeployment
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 70
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mydeployservice
+  namespace: default
+spec:
+ type: LoadBalancer
+# loadBalancerIP:  "34.100.219.135"
+ selector:
+   app: mywordpress
+ ports:
+ - port: 7070
+   targetPort: 80
