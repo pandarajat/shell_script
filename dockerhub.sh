@@ -1,9 +1,7 @@
-nes (26 sloc)  1.28 KB
-
 #!/bin/bash
 
 USERNAME="raja9658"
-PASSWD="Raja@12345"
+PASSWD=""
 ORGANIZATIONNAME="raja9658"
 REPOSITORY="docker-version"
 
