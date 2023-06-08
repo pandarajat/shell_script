@@ -15,11 +15,19 @@ echo "Identifying and deleting images first tag in ${ORGANIZATIONNAME} docker hu
 # you can use jq for search name
 IMAGE_TAGS=$(curl -s -H "Authorization: JWT ${TOKEN}" https://hub.docker.com/v2/repositories/${ORGANIZATIONNAME}/${REPOSITORY}/tags/ | jq -r '.results|.[]|.name')
 echo $IMAGE_TAGS
+##########--get firsttag using array --####
+#myarray=($IMAGE_TAGS)
+#echo "Number of elements in the array: ${#myarray[@]}"
+#first=${myarray[${#myarray[@]} - 1]}
+#echo $first
+##length=${#myarray[@]}
+##echo $length
 
-FIRST_TAG=$(curl -s -H "Authorization: JWT ${TOKEN}" https://hub.docker.com/v2/repositories/${ORGANIZATIONNAME}/${REPOSITORY}/tags/  | jq -r '.results|.[7]|.name')
+##FIRST_TAG=$(curl -s -H "Authorization: JWT ${TOKEN}" https://hub.docker.com/v2/repositories/${ORGANIZATIONNAME}/${REPOSITORY}/tags/  | jq -r '.results|.[7]|.name')
+##FIRST_TAG=$(curl -s -H "Authorization: JWT ${TOKEN}" https://hub.docker.com/v2/repositories/${ORGANIZATIONNAME}/${REPOSITORY}/tags/ | jq -r '.results|.[length-1]|.name')
 echo "first tag is ${FIRST_TAG}"
 ## Please uncomment below line to delete docker hub images of docker hub repositories 
-curl -s  -X DELETE  -H "Authorization: JWT ${TOKEN}" https://hub.docker.com/v2/repositories/${ORGANIZATIONNAME}/${REPOSITORY}/tags/${FIRST_TAG}/
+##curl -s  -X DELETE  -H "Authorization: JWT ${TOKEN}" https://hub.docker.com/v2/repositories/${ORGANIZATIONNAME}/${REPOSITORY}/tags/${FIRST_TAG}/
 echo "$?"
 
 if [ ${FIRST_TAG} = "null" ]
